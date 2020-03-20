@@ -1,0 +1,22 @@
+function Output = RESIZENNVEC(filename,scale)
+    A=imread(filename,'jpg');
+    sz = size(A);
+    scale_factor = scale;
+    final_sz = sz*scale_factor;
+    IR = ceil([1:final_sz(1)]./(scale_factor));
+    IC = ceil([1:final_sz(2)]./(scale_factor));
+    t1= A(:,:,1);
+    t2= A(:,:,2);
+    t3= A(:,:,3);
+    Red = t1(IR,:);
+    Red = Red(:,IC);
+    Green = t2(IR,:);
+    Green = Green(:,IC);
+    Blue = t3(IR,:);
+    Blue = Blue(:,IC);
+    Output=zeros([final_sz(1),final_sz(2),3]);
+    Output(:,:,1)=Red;
+    Output(:,:,2)=Green;
+    Output(:,:,3)=Blue;
+    Output = uint8(Output);
+end
